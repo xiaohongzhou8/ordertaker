@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>OrderTakerServices</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\OrderTaker.Contracts\OrderTaker.Contracts.csproj"/>
+        <ProjectReference Include="..\OrderTaker.Repositories\OrderTaker.Repositories.csproj"/>
+    </ItemGroup>
+
+</Project>
