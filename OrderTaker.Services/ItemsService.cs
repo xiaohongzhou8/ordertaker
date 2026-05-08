@@ -7,10 +7,9 @@ namespace OrderTakerServices.Services;
 
 public class ItemsService(IItemsRepository itemsRepository) : IItemsService
 {
-    public IEnumerable<ItemResponseContract> GetAllItems()
+    public async Task<IEnumerable<ItemResponseContract>> GetAllItemsAsync()
     {
-        var items = itemsRepository.GetAllItems()
-            .Select(item => ItemsMapper.ToContract(ItemsMapper.ToModel(item)));
-        return items;
+        var items = await itemsRepository.GetAllItemsAsync();
+        return items.Select(item => ItemsMapper.ToContract(ItemsMapper.ToModel(item)));
     }
 }

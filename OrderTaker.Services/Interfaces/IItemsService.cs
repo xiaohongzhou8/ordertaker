@@ -4,5 +4,5 @@ namespace OrderTakerServices.Interfaces;
 
 public interface IItemsService
 {
-    public IEnumerable<ItemResponseContract> GetAllItems();
+    public Task<IEnumerable<ItemResponseContract>> GetAllItemsAsync();
 }

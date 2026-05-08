@@ -9,11 +9,11 @@ namespace WebApplication1.Controllers;
 public class ItemsController(IItemsService itemsService) : ControllerBase
 {
     [HttpGet]
-    public ActionResult<IEnumerable<ItemResponseContract>> GetAll()
+    public async Task<ActionResult<IEnumerable<ItemResponseContract>>> GetAllAsync()
     {
         try
         {
-            var items = itemsService.GetAllItems();
+            var items = await itemsService.GetAllItemsAsync();
             return Ok(items);
         }
         catch (Exception ex)

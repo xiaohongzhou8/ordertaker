@@ -4,5 +4,6 @@ namespace OrderTakerRepositories.Interfaces;
 
 public interface IItemsRepository
 {
-    public IEnumerable<ItemEntity> GetAllItems();
+    public Task<IEnumerable<ItemEntity>> GetAllItemsAsync();
+    public Task<ItemEntity> CreateItemAsync(ItemEntity item);
 }

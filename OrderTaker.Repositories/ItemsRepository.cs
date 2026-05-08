@@ -9,11 +9,19 @@ namespace OrderTakerRepositories;
 
 public class ItemsRepository(IOptions<OrderTakerOptions> options) : IItemsRepository
 {
-    public IEnumerable<ItemEntity> GetAllItems()
+    public async Task<ItemEntity> CreateItemAsync(ItemEntity item)
+    {
+        const string query = "INSERT INTO Items (Id, Name, Price) VALUES (@Id, @Name, @Price);";
+        await using var connection = new SqlConnection(options.Value.ConnectionString);
+        await connection.ExecuteAsync(query, item);
+        return item;
+    }
+
+    public async Task<IEnumerable<ItemEntity>> GetAllItemsAsync()
     {
         const string query = "SELECT * FROM Items;";
-        using var connection = new SqlConnection(options.Value.ConnectionString);
-        var items = connection.Query<ItemEntity>(query);
+        await using var connection = new SqlConnection(options.Value.ConnectionString);
+        var items = await connection.QueryAsync<ItemEntity>(query);
         return items;
     }
 }
