@@ -1,4 +1,4 @@
-using Azure.Identity;
+using OrderTaker.Data;
 using OrderTakerRepositories;
 using OrderTakerRepositories.Interfaces;
 using OrderTakerRepositories.Options;
@@ -13,20 +13,20 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Configuration.AddAzureKeyVault(
-    new Uri("https://ordertakerkeyvault.vault.azure.net/"),
-    new DefaultAzureCredential()
+builder.Services.Configure<ConnectionStrings>(
+    builder.Configuration.GetSection(nameof(ConnectionStrings))
 );
 
-builder.Services.Configure<OrderTakerOptions>(
-    builder.Configuration.GetSection(nameof(OrderTakerOptions))
-);
+builder.Services.AddSingleton<DbInit>();
 
 builder.Services.AddScoped<IItemsService, ItemsService>();
 builder.Services.AddScoped<IItemsRepository, ItemsRepository>();
 
 
 var app = builder.Build();
+
+var dbInit = app.Services.GetRequiredService<DbInit>();
+dbInit.Init();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) app.MapOpenApi();

@@ -8,15 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.5.1" />
-        <PackageReference Include="Azure.Identity" Version="1.21.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.7"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\OrderTaker.Contracts\OrderTaker.Contracts.csproj" />
-      <ProjectReference Include="..\OrderTaker.Repositories\OrderTaker.Repositories.csproj" />
-      <ProjectReference Include="..\OrderTaker.Services\OrderTaker.Services.csproj" />
+        <ProjectReference Include="..\OrderTaker.Contracts\OrderTaker.Contracts.csproj"/>
+        <ProjectReference Include="..\OrderTaker.Data\OrderTaker.Data.csproj"/>
+        <ProjectReference Include="..\OrderTaker.Repositories\OrderTaker.Repositories.csproj"/>
+        <ProjectReference Include="..\OrderTaker.Services\OrderTaker.Services.csproj"/>
     </ItemGroup>
 
 </Project>
